@@ -22,8 +22,7 @@ void sortOne(int arr[], int n) {
             right--;
         }
 
-        //agar yha pohoch gye ho, iska matlab
-        //arr[left]==1 and arr[right]==0
+       
         if(left<right)
         {
             swap(arr[left], arr[right]);
