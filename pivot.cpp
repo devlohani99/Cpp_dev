@@ -1,6 +1,6 @@
 #include<iostream>
 using namespace std;
-
+//hello
 int getPivot(int arr[],int n){
     int s=0;
     int e=n-1;
