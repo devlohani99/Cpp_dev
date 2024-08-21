@@ -1,0 +1,15 @@
+class Solution {
+public:
+    int majorityElement(vector<int>& n) {
+        map<int,int> m;
+        for(int x : n) {
+            m[x]++;
+        }
+        for(auto p : m) {
+            if(p.second > n.size() / 2) {
+                return p.first;
+            }
+        }
+        return -1;
+    }
+};
