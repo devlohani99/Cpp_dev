@@ -1,0 +1,30 @@
+class Solution {
+public:
+    int maxProduct(vector<int>& nums) {
+        int max_prod = nums[0];
+        int prod = 1;
+        for (int i = 0; i < nums.size(); i++) {
+            prod = 1;
+            for (int j = i; j < nums.size(); j++) {
+                prod *= nums[j];
+                if (prod > max_prod) {
+                    max_prod = prod;
+                }
+            }
+        }
+        return max_prod;
+    }
+};
+
+
+//obtimal solution 
+int maxiproduct(vector<int>&arr){
+  int p=1;
+  int s=1;
+  int ans=INT_MIN;
+  for(int i=0;i<n;i++){
+    if(p==0)p=1;
+    if(s==0)s=1;
+    ans=max(ans,max(p*arr[i],s*s[i]);
+  }
+}
