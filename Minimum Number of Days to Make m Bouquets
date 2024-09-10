@@ -1,0 +1,60 @@
+class Solution {
+public:
+    int maxday(vector<int>& bloomDay) {
+        int maxi = INT_MIN;
+        for (int i : bloomDay) {
+            if (i > maxi) {
+                maxi = i;
+            }
+        }
+        return maxi;
+    }
+
+    int minday(vector<int>& bloomDay) {
+        int mini = INT_MAX;
+        for (int i : bloomDay) {
+            if (i < mini) {
+                mini = i;
+            }
+        }
+        return mini;
+    }
+
+    bool canMakeBouquets(vector<int>& bloomDay, int m, int k, int day) {
+        int bouquets = 0, flowers = 0;
+        for (int i : bloomDay) {
+            if (i <= day) {
+                flowers++;
+                if (flowers == k) {
+                    bouquets++;
+                    flowers = 0;
+                }
+            } else {
+                flowers = 0;
+            }
+            if (bouquets >= m) return true;
+        }
+        return bouquets >= m;
+    }
+
+    int minDays(vector<int>& bloomDay, int m, int k) {
+   
+        if (1LL * m * k > bloomDay.size()) {
+            return -1; 
+        }
+
+        int start = minday(bloomDay);
+        int end = maxday(bloomDay);
+
+        while (start < end) {
+            int mid = start + (end - start) / 2;
+            if (canMakeBouquets(bloomDay, m, k, mid)) {
+                end = mid; 
+            } else {
+                start = mid + 1; 
+            }
+        }
+
+        return start; 
+    }
+};
