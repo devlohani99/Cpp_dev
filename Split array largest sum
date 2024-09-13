@@ -1,0 +1,41 @@
+class Solution {
+public:
+
+bool find(int mid,vector<int> &a, int k){
+    int painter=1;
+    int area=0;
+    int n=a.size();
+    for(int i=0;i<n;i++){
+        if(area+a[i]<=mid){
+            area=area+a[i];
+        }
+        else{
+            painter++;
+            area=a[i];
+            if(painter>k){
+                return false;
+            }
+        }
+    }
+    return true;
+
+}
+
+    int splitArray(vector<int>&  a, int k) {
+        int start=*max_element(a.begin(),a.end());
+    int end=accumulate(a.begin(),a.end(),0);
+    int ans=-1;
+    while(start<=end){
+        int mid=start+(end-start)/2;
+        bool pos=find(mid,a,k);
+        if(pos){
+            ans=mid;
+            end=mid-1;
+        }
+        else{
+            start=mid+1;
+        }
+    }
+    return ans;
+    }
+};
