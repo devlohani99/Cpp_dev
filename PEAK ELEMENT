@@ -1,0 +1,35 @@
+class Solution {
+public:
+
+    int maxEleRow(vector<vector<int>>& mat,int col){
+        int n=mat.size() , m=mat[0].size();
+        int maxEle=INT_MIN , maxEleRowNum=0;
+        for(int i=0;i<n;i++){
+            if(mat[i][col]>maxEle){
+                maxEle=mat[i][col];
+                maxEleRowNum=i;
+            }
+        }
+        return maxEleRowNum;
+    }
+
+    vector<int> approach1(vector<vector<int>>& mat){
+        int n=mat.size() , m=mat[0].size();
+        int low=0,high=m-1;
+        while(low<=high){
+            int mid=low+(high-low)/2;
+            int row=maxEleRow(mat,mid);
+            int left = mid > 0 ? mat[row][mid-1] : -1;
+            int right = mid < m-1  ? mat[row][mid+1] : -1;
+
+            if(mat[row][mid]>left && mat[row][mid]>right) return {row,mid};
+            else if(mat[row][mid]>left) low=mid+1;
+            else high=mid-1;
+        }
+        return {-1,-1};
+    }
+
+    vector<int> findPeakGrid(vector<vector<int>>& mat) {
+        return approach1(mat);
+    }
+};
