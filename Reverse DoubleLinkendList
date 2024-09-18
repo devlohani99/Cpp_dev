@@ -1,0 +1,16 @@
+class Solution {
+  public:
+    DLLNode* reverseDLL(DLLNode* head) {
+        DLLNode* prev = NULL;
+        DLLNode* current = head;
+        while(current != NULL) {
+            prev = current->prev;
+            current->prev = current->next;
+            current->next = prev;
+            current = current->prev;
+        }
+        if (prev != NULL)
+            head = prev->prev;
+        return head;
+    }
+};
