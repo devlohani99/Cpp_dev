@@ -1,3 +1,4 @@
+
 class Solution {
 public:
     vector<vector<int>> fourSum(vector<int>& nums, int target) {
@@ -20,8 +21,8 @@ public:
                     if (sum == target) {
                         ans.push_back({nums[i], nums[j], nums[k], nums[l]});
 
-                        while (k < l && nums[k] == nums[k + 1]) k++;  // Avoid duplicates
-                        while (k < l && nums[l] == nums[l - 1]) l--;  // Avoid duplicates
+                        while (k < l && nums[k] == nums[k + 1]) k++;  
+                        while (k < l && nums[l] == nums[l - 1]) l--;  
 
                         k++;
                         l--;
