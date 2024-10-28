@@ -1,0 +1,25 @@
+class Solution {
+public:
+    void fun(TreeNode* root, vector<int>& sol) {
+        if (root == nullptr) {
+            return;
+        }
+        fun(root->left, sol);
+        sol.push_back(root->val);
+        fun(root->right, sol);
+    }
+
+    bool findTarget(TreeNode* root, int k) {
+        vector<int> sol;
+        fun(root, sol);
+
+        int left = 0, right = sol.size() - 1;
+        while (left < right) {
+            int sum = sol[left] + sol[right];
+            if (sum == k) return true;
+            else if (sum < k) left++;
+            else right--;
+        }
+        return false;
+    }
+};
