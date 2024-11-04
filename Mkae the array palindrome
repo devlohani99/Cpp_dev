@@ -1,0 +1,30 @@
+#include <bits/stdc++.h> 
+
+int palindrome(vector<int> A)
+{
+	long long n = A.size();
+	long long start = 0;
+	long long end = n-1;
+	long long count = 0;
+	vector<long long> arr;
+	for(auto x: A){
+          arr.push_back( (long long)x );
+        }
+	while( start < end ){
+		if( arr[start] == arr[end] ){
+			start++;
+			end--;
+		} else if( arr[start] < arr[end] ) {
+			arr[start+1] = arr[start] + arr[start+1];
+			count++;
+			start++;
+			
+		} else {
+			
+			arr[end-1] = arr[end] + arr[end-1];
+			end--;
+			count++;
+		}
+	}
+	return count;
+}
