@@ -1,0 +1,19 @@
+#include <string>
+using namespace std;
+
+class Solution {
+public:
+    string addBinary(string a, string b) {
+        int n1 = a.length() - 1, n2 = b.length() - 1, carry = 0;
+        string res = "";
+        while (n1 >= 0 || n2 >= 0 || carry) {
+            int t1 = n1 >= 0 ? a[n1--] - '0' : 0;
+            int t2 = n2 >= 0 ? b[n2--] - '0' : 0;
+            int sum = t1 + t2 + carry;
+            carry = sum / 2;
+            res += (sum % 2) + '0';
+        }
+        reverse(res.begin(), res.end());
+        return res;
+    }
+};
