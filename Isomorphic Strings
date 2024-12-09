@@ -1,0 +1,25 @@
+class Solution {
+public:
+    bool isIsomorphic(string s, string t) {
+        unordered_map<char,char>sm;
+        unordered_map<char,char>tm;
+
+        for(int i=0;i<s.size();i++){
+            char sc=s[i];
+            char tc=t[i];
+
+            if(sm.count(sc) && sm[sc]!=tc){
+                return false;
+            }
+            if(tm.count(tc)&& tm[tc]!=sc){
+                return false;
+            }
+
+
+
+            sm[sc]=tc;
+            tm[tc]=sc;
+        }
+        return true;
+    }
+};
