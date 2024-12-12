@@ -1,0 +1,15 @@
+class Solution {
+public:
+    long long pickGifts(vector<int>& g, int k) {
+        sort(g.begin(), g.end(), greater<int>());
+        
+        while (k > 0) {
+            g[0] = floor(sqrt(g[0]));
+            sort(g.begin(), g.end(), greater<int>());
+            k--;
+        }
+        
+        long long sum = accumulate(g.begin(), g.end(), 0LL);
+        return sum;
+    }
+};
