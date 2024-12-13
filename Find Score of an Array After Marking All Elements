@@ -1,0 +1,37 @@
+class Solution {
+public:
+    long long findScore(vector<int>& nums) {
+        int n=nums.size();
+        set<pair<int,int>>s;
+        for(int i=0;i<n;i++){
+            s.insert({nums[i],i});
+        }
+
+        long long ans=0;
+        while(s.size()>0){
+            auto p=*s.begin();
+            int index=p.second;
+            ans=ans+p.first;
+            s.erase(p);
+
+            if(index-1>=0 ){
+                pair<int,int>pl={nums[index-1],index-1};
+                if(s.find(pl)!=s.end()){
+                    s.erase(pl);
+                }
+
+                
+            }
+                        if(index+1<=n-1 ){
+                pair<int,int>pr={nums[index+1],index+1};
+                if(s.find(pr)!=s.end()){
+                    s.erase(pr);
+                }
+
+                
+            }
+           
+        }
+ return ans;
+    }
+};
