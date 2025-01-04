@@ -39,3 +39,22 @@ public:
         return ans;
     }
 };
+
+//optimize method 
+
+  int countTriplets(vector<int> &arr, int target) {
+        // Code Here
+        unordered_map<int, int> mp;
+        mp[arr[0]]++;
+        int cnt = 0;
+        for(int i=1; i<arr.size()-1; i++) {
+            for(int j=i+1; j<arr.size(); j++) {
+                if (mp.find(target - (arr[i]+arr[j])) != mp.end()) {
+                    cnt += mp[target - (arr[i]+arr[j])];
+                }
+            }
+            mp[arr[i]]++;
+        }
+        
+        return cnt;
+    }
