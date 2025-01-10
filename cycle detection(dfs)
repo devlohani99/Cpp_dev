@@ -1,0 +1,29 @@
+class Solution {
+public:
+    bool detect(int node, int parent, vector<int>& vis, vector<vector<int>>& adj) {
+        vis[node] = 1;  // Mark the current node as visited
+        for (auto adjacentNode : adj[node]) {
+            if (!vis[adjacentNode]) {  // If the adjacent node is not visited
+                if (detect(adjacentNode, node, vis, adj)) 
+                    return true;
+            } 
+            else if (adjacentNode != parent) {  // If the adjacent node is visited and not the parent, a cycle is found
+                return true;
+            }
+        }
+        return false;
+    }
+
+    bool isCycle(vector<vector<int>>& adj) {
+        int v = adj.size();  // Number of vertices
+        vector<int> vis(v, 0);  // Initialize the visited vector with 0s
+
+        for (int i = 0; i < v; i++) {
+            if (!vis[i]) {  // If the node is not visited
+                if (detect(i, -1, vis, adj)) 
+                    return true;
+            }
+        }
+        return false;  // No cycle found
+    }
+};
